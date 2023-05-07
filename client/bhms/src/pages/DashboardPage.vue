@@ -102,7 +102,7 @@
               </div>
               <div class="row">
                 <div class="col-10" style="padding-left: 10px;  font-size: 50px;">
-                  24
+                  23
                 </div>
                 <div class="col-2">
                   <q-icon name="bed" color="lime-10" class="text-primary " size="40px" style="padding-top: 20px;"/>
