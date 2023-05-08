@@ -1,5 +1,7 @@
 package com.wvsu.bhms.tenant;
 
+import java.util.List;
+
 public interface TenantService {
     Tenant create(Tenant tenant);
 
@@ -8,4 +10,6 @@ public interface TenantService {
     void delete(long id);
 
     Tenant findById(long id);
+
+    List<Tenant> findAll();
 }

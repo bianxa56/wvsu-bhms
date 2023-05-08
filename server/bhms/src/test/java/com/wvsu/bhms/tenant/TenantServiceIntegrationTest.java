@@ -5,6 +5,8 @@ import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TenantServiceIntegrationTest extends BhmsApplicationTests {
@@ -45,6 +47,13 @@ public class TenantServiceIntegrationTest extends BhmsApplicationTests {
         tenantService.delete(saved.getId());
         Tenant found = tenantService.findById(saved.getId());
         assertNull(found);
+    }
+
+    @Test
+    public void findAll() {
+        Tenant saved = tenantService.create(buildTenant());
+        List<Tenant> tenants =  tenantService.findAll();
+        assertTrue(tenants.size() > 0);
     }
 
     private static Tenant buildTenant() {

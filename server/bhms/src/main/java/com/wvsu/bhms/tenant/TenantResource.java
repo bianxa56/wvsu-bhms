@@ -1,10 +1,9 @@
 package com.wvsu.bhms.tenant;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tenant")
@@ -16,5 +15,25 @@ public class TenantResource {
     @PostMapping("/create")
     Tenant create(@RequestBody Tenant tenant) {
         return tenantService.create(tenant);
+    }
+
+    @PostMapping("/update")
+    Tenant update(@RequestBody Tenant tenant) {
+        return tenantService.update(tenant);
+    }
+
+    @PostMapping("/delete")
+    void delete(@RequestParam long id) {
+        tenantService.delete(id);
+    }
+
+    @GetMapping("/findAll")
+    List<Tenant> findAll() {
+        return tenantService.findAll();
+    }
+
+    @GetMapping("/findById")
+    Tenant findById(@RequestParam long id) {
+        return tenantService.findById(id);
     }
 }

@@ -3,6 +3,7 @@ package com.wvsu.bhms.tenant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +44,11 @@ public class TenantServiceImpl implements TenantService {
     public Tenant findById(long id) {
         Optional<Tenant> found = tenantRepository.findById(id);
         return found.orElse(null);
+    }
+
+    @Override
+    public List<Tenant> findAll() {
+        return tenantRepository.findAll();
     }
 
     private static Tenant checkTenantNameIfAlreadyExisting(Tenant existingById, Tenant existingByFirstNameAndLastName) {
