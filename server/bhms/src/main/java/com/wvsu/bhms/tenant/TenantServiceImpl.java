@@ -31,7 +31,6 @@ public class TenantServiceImpl implements TenantService {
         }
         existingById.setFirstName(tenant.getFirstName());
         existingById.setLastName(tenant.getLastName());
-
         return tenantRepository.save(tenant);
     }
 
