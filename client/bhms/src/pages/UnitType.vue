@@ -1,116 +1,462 @@
+
 <template>
-  <div>
-    <q-toolbar class="q-pa-md justify-center">
-      <q-toolbar-title class="page-title justify-center">Unit Types</q-toolbar-title>
-    </q-toolbar>
-    <!-- rest of the page content -->
+  <div class="col">
+    <q-img src="~assets/chateau/bh.jpg"  style="height: 300px;">
+      <div class="absolute-full text-h3 flex flex-center">
+      </div>
+    </q-img>
   </div>
-  <div class="q-pa-md row items-start q-gutter-md justify-center">
-  <q-card class="my-card" flat bordered>
-    <q-img src="~assets/chateau/room-1.jpg" />
 
-    <q-card-section>
-      <div class="row no-wrap items-center">
-        <div class="col text-h6 ellipsis">
-          Room 101
-        </div>
-
-      </div>
-
-<!--      <q-rating v-model="stars" :max="5" size="32px" />-->
-    </q-card-section>
-
-    <q-card-section class="q-pt-none">
-      <div class="text-subtitle1">
-        ₱7000.00・Good for 2・Air-conditioned
-      </div>
-      <div class="text-caption text-grey">
-        Our Standard Room is a cozy and affordable option, perfect for students or young professionals on a budget.
-      </div>
-    </q-card-section>
-
-    <q-separator />
-
-  </q-card>
+  <div class="col" style="padding: 15px; ">
+    <div class="text-h4 flex flex-center">
+      Find your ideal living space
+    </div>
   </div>
-  <div class="q-pa-md row items-start q-gutter-md justify-center">
-    <q-card class="my-card" flat bordered>
-      <q-img src="~assets/chateau/room-2.jpg" />
 
-      <q-card-section>
-        <div class="row no-wrap items-center">
-          <div class="col text-h6 ellipsis">
-            Room 102
+  <div class="row q-col-gutter-md">
+    <!-- Room 1-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-1.jpg">
+        </q-img>
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 1
+            </div>
           </div>
 
-        </div>
+        </q-card-section>
 
-<!--        <q-rating v-model="stars" :max="5" size="32px" />-->
-      </q-card-section>
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱6,000.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Experience the ultimate in comfort and convenience with Room 1,
+            boasting a generous living space complete with a private CR,
+            entertainment with a TV, refreshing air conditioning, convenient refrigerator,
+            and access to fully-equipped shared kitchen amenities.
+          </div>
+        </q-card-section>
+        <q-separator />
+      </q-card>
+    </div>
+    <!-- Room 2-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-2.jpg" />
 
-      <q-card-section class="q-pt-none">
-        <div class="text-subtitle1">
-          ₱7000.00・Good for 2・Air-conditioned
-        </div>
-        <div class="text-caption text-grey">
-          Enjoy stunning city views from our Penthouse Suite, featuring a private balcony and a spacious living area.
-        </div>
-      </q-card-section>
-
-      <q-separator />
-
-    </q-card>
-  </div>
-  <div class="q-pa-md row items-start q-gutter-md justify-center">
-    <q-card class="my-card" flat bordered>
-      <q-img src="~assets/chateau/room-5.jpg" />
-
-      <q-card-section>
-        <div class="row no-wrap items-center">
-          <div class="col text-h6 ellipsis">
-            Room 105
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 2
+            </div>
           </div>
 
-        </div>
-        <q-badge color="positive" v-if="available">Available</q-badge>
-        <q-badge color="negative" v-else>Unavailable</q-badge>
-<!--        <q-rating v-model="stars" :max="5" size="32px" />-->
-      </q-card-section>
+        </q-card-section>
 
-      <q-card-section class="q-pt-none">
-        <div class="text-subtitle1">
-          ₱7000.00・Good for 2・Air-conditioned
-        </div>
-        <div class="text-caption text-grey">
-          Enjoy stunning city views from our Penthouse Suite, featuring a private balcony and a spacious living area.
-        </div>
-      </q-card-section>
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱6,000.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Indulge in the comfort and convenience of Room 2, featuring a private CR,
+            entertainment with a TV, refreshing air conditioning, convenient refrigerator,
+            and a personal cabinet for your belongings. Plus, with a fully-equipped
+            shared kitchen, you'll have everything you need to make yourself at home
+            and connect with other travelers.
+          </div>
+        </q-card-section>
+        <q-separator />
+      </q-card>
+    </div>
+    <!-- Room 5-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-5.jpg" />
 
-      <q-separator />
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 5
+            </div>
+          </div>
 
-    </q-card>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱9,000.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Treat yourself to the ultimate home-away-from-home experience in Room 5,
+            boasting a fully-equipped kitchen with your own utilities,
+            a spacious and comfortable bed, air conditioning, a dining table for meals and work,
+            ample storage space, and a private CR to unwind in complete privacy.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
+  </div>
+
+  <div class="row q-col-gutter-md">
+    <!--  Room 6-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-6.jpg">
+        </q-img>
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 6
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱6,500.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Experience the ultimate in comfort and convenience with Room 1,
+            boasting a generous living space complete with a private CR,
+            entertainment with a TV, refreshing air conditioning, convenient refrigerator,
+            and access to fully-equipped shared kitchen amenities.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
+    <!--  Room 8-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-8.jpg" />
+
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 8
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱10,000.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Indulge in the comfort and convenience of Room 2, featuring a private CR,
+            entertainment with a TV, refreshing air conditioning, convenient refrigerator,
+            and a personal cabinet for your belongings. Plus, with a fully-equipped
+            shared kitchen, you'll have everything you need to make yourself at home
+            and connect with other travelers.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
+    <!--  Room 9-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-9.jpg" />
+
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 9
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱7,000.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Treat yourself to the ultimate home-away-from-home experience in Room 5,
+            boasting a fully-equipped kitchen with your own utilities,
+            a spacious and comfortable bed, air conditioning, a dining table for meals and work,
+            ample storage space, and a private CR to unwind in complete privacy.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
+  </div>
+
+  <div class="row q-col-gutter-md">
+    <!--  Room 11-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-11.jpg">
+        </q-img>
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 11
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱6,500.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Experience the ultimate in comfort and convenience with Room 1,
+            boasting a generous living space complete with a private CR,
+            entertainment with a TV, refreshing air conditioning, convenient refrigerator,
+            and access to fully-equipped shared kitchen amenities.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
+    <!--  Room 12-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-12.jpg" />
+
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 12
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱10,000.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Indulge in the comfort and convenience of Room 2, featuring a private CR,
+            entertainment with a TV, refreshing air conditioning, convenient refrigerator,
+            and a personal cabinet for your belongings. Plus, with a fully-equipped
+            shared kitchen, you'll have everything you need to make yourself at home
+            and connect with other travelers.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
+    <!--  Room 13-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-14.jpg" />
+
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 14
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱7,000.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Treat yourself to the ultimate home-away-from-home experience in Room 5,
+            boasting a fully-equipped kitchen with your own utilities,
+            a spacious and comfortable bed, air conditioning, a dining table for meals and work,
+            ample storage space, and a private CR to unwind in complete privacy.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
+  </div>
+
+  <div class="row q-col-gutter-md">
+    <!--  Room 14-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-15.jpg">
+        </q-img>
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 15
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱6,500.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Experience the ultimate in comfort and convenience with Room 1,
+            boasting a generous living space complete with a private CR,
+            entertainment with a TV, refreshing air conditioning, convenient refrigerator,
+            and access to fully-equipped shared kitchen amenities.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
+    <!--  Room 17-->
+    <div class="col-4">
+      <q-card class="my-card" flat bordered style="margin: 15px;">
+        <q-img src="~assets/chateau/room-17.jpg" />
+
+        <q-card-section>
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">
+              Room 17
+            </div>
+          </div>
+
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            ₱10,000.00・Ground Floor
+          </div>
+          <div class="text-subtitle1">
+            Good for 2 persons only
+          </div>
+          <div class="text-caption text-grey cursor-pointer"
+               :class = "hover ? '' : 'ellipsis-3-lines'"
+               @mouseover="hover = true"
+               @mouseleave="hover = false">
+            Indulge in the comfort and convenience of Room 2, featuring a private CR,
+            entertainment with a TV, refreshing air conditioning, convenient refrigerator,
+            and a personal cabinet for your belongings. Plus, with a fully-equipped
+            shared kitchen, you'll have everything you need to make yourself at home
+            and connect with other travelers.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </div>
   </div>
 </template>
+
+<style scoped lang="sass">
+.my-card
+  width: 100%
+  max-width: 400px
+//color: $lime-10
+
+.q-item-section--side
+  justify-content: flex-end
+
+.absolute-full text-h3 flex flex-center
+
+</style>
+
 <script>
 import { ref } from 'vue'
 
 export default {
-  setup () {
+
+  data() {
     return {
-      stars: ref(4)
+      hover: false,
+    }
+  },
+  setup() {
+    const single = ref(null)
+    const multiple = ref(null)
+    const text = ref('')
+    const options = [
+      'Google',
+      'Facebook',
+      'Twitter',
+      'Apple',
+      'Oracle'
+    ]
+
+    return {
+      single,
+      multiple,
+      text,
+      options,
+      model: ref(10),
+      time: ref(''),
+      date: ref('')
     }
   }
 }
 </script>
-
-<style lang="sass" scoped>
-.my-card
-  width: 100%
-  max-width: 800px
-  //padding: 10px
-  //margin-left: 60px
-.page-title
-  color: $lime-10
-  font-size: 50px
-  font-weight: bold
-</style>
