@@ -428,14 +428,22 @@
 
 <script>
 import { ref } from 'vue'
+import axios from "axios";
 
 export default {
 
   data() {
     return {
       hover: false,
+      rows: []
     }
   },
+  async created () {
+    const response = await axios.get('/api/room/findAll')
+    this.rows = response.data
+    console.log(this.rows)
+  },
+
   setup() {
     const single = ref(null)
     const multiple = ref(null)

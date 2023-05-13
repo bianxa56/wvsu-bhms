@@ -4,6 +4,7 @@ import com.wvsu.bhms.tenant.Tenant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +44,11 @@ class RoomServiceImpl implements RoomService {
     public Room findById(long id) {
         Optional<Room> found = roomRepository.findById(id);
         return found.orElse(null);
+    }
+
+    @Override
+    public List<Room> findAll() {
+        return roomRepository.findAll();
     }
 
     private Room checkRoomNameIfAlreadyExisting(Room existingById, Room existingByName) {

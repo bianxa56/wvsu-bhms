@@ -23,13 +23,14 @@
 
 <script>
 import { ref } from 'vue'
+import axios from "axios";
 const columns = [
   {
     name: 'name',
     required: true,
     label: 'Name',
     align: 'left',
-    field: row => row.name,
+    field: row => row.firstName,
     format: val => `${val}`,
     sortable: true
   },
@@ -40,67 +41,75 @@ const columns = [
 
 ]
 
-const rows = [
-  {
-    roomNumber: 101,
-    name: 'John Wick',
-    address: '221B Baker Street, London',
-    contactNumber: '995 796 322',
-    action: ""
-  },
-  {
-    roomNumber: 102,
-    name: 'Leonardo DiCaprio',
-    address: '123 Main Street, Anytown USA',
-    contactNumber: '995 796 322',
-    action: ""
-  },
-  {
-    roomNumber: 103,
-    name: 'Anne Hathaway',
-    address: '742 Evergreen Terrace, Springfield',
-    contactNumber: '995 796 322',
-    action: ""
-  },
-  {
-    roomNumber: 104,
-    name: 'Anne Hathaway',
-    address: '74 Privet Drive, Little Whinging, Surrey',
-    contactNumber: '995 796 322',
-    action: ""
-  },
-  {
-    roomNumber: 105,
-    name: 'Doja Cat',
-    address: '221B Cemetery Lane, Misty Mountains',
-    contactNumber: '995 796 322',
-    action: ""
-  },
-  {
-    roomNumber: 106,
-    name: 'Kendrick Lamar',
-    address: '221B Cemetery Lane, Misty Mountains',
-    contactNumber: '995 796 322',
-    action: ""
-  },
-  {
-    roomNumber: 106,
-    name: 'Chris Brown',
-    address: '221B Cemetery Lane, Misty Mountains',
-    contactNumber: '995 796 322',
-    action: ""
-  },
-]
+// const rows = [
+//   {
+//     roomNumber: 101,
+//     name: 'John Wick',
+//     address: '221B Baker Street, London',
+//     contactNumber: '995 796 322',
+//     action: ""
+//   },
+//   {
+//     roomNumber: 102,
+//     name: 'Leonardo DiCaprio',
+//     address: '123 Main Street, Anytown USA',
+//     contactNumber: '995 796 322',
+//     action: ""
+//   },
+//   {
+//     roomNumber: 103,
+//     name: 'Anne Hathaway',
+//     address: '742 Evergreen Terrace, Springfield',
+//     contactNumber: '995 796 322',
+//     action: ""
+//   },
+//   {
+//     roomNumber: 104,
+//     name: 'Anne Hathaway',
+//     address: '74 Privet Drive, Little Whinging, Surrey',
+//     contactNumber: '995 796 322',
+//     action: ""
+//   },
+//   {
+//     roomNumber: 105,
+//     name: 'Doja Cat',
+//     address: '221B Cemetery Lane, Misty Mountains',
+//     contactNumber: '995 796 322',
+//     action: ""
+//   },
+//   {
+//     roomNumber: 106,
+//     name: 'Kendrick Lamar',
+//     address: '221B Cemetery Lane, Misty Mountains',
+//     contactNumber: '995 796 322',
+//     action: ""
+//   },
+//   {
+//     roomNumber: 106,
+//     name: 'Chris Brown',
+//     address: '221B Cemetery Lane, Misty Mountains',
+//     contactNumber: '995 796 322',
+//     action: ""
+//   },
+// ]
 
 export default {
   setup () {
-
     return {
       filter: ref(''),
-      columns,
-      rows,
+      columns
 
     }
+  },
+  data () {
+    return {
+      rows: []
+    }
+  },
+  async created () {
+    const response = await axios.get('/api/tenant/findAll')
+    this.rows = response.data
+    console.log(this.rows)
   }
 }
 </script>

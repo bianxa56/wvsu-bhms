@@ -7,8 +7,9 @@ import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomServiceIntegrationTest extends BhmsApplicationTests {
 
@@ -44,6 +45,12 @@ public class RoomServiceIntegrationTest extends BhmsApplicationTests {
         roomService.delete(saved.getId());
         Room found = roomService.findById(saved.getId());
         assertNull(found);
+    }
+    @Test
+    public void findAll() {
+        Room saved = roomService.create(buildRoom());
+        List<Room> rooms =  roomService.findAll();
+        assertTrue(rooms.size() > 0);
     }
 
     private Room buildRoom() {
