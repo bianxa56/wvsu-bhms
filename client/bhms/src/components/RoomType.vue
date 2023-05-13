@@ -5,7 +5,7 @@
         <q-card-section>
             <div class="row no-wrap items-center">
                 <div class="col text-h6 ellipsis">
-                    Room 1
+                    {{room.name}}
                 </div>
             </div>
 
@@ -13,19 +13,16 @@
 
         <q-card-section class="q-pt-none">
             <div class="text-subtitle1">
-                ₱6,000.00・Ground Floor
+                ₱{{room.monthlyRent.toLocaleString()}}.00・{{room.roomLocation}}
             </div>
             <div class="text-subtitle1">
-                Good for 2 persons only
+              {{room.capacity}}
             </div>
             <div class="text-caption text-grey cursor-pointer"
                  :class="hover ? '' : 'ellipsis-3-lines'"
                  @mouseover="hover = true"
                  @mouseleave="hover = false">
-                Experience the ultimate in comfort and convenience with Room 1,
-                boasting a generous living space complete with a private CR,
-                entertainment with a TV, refreshing air conditioning, convenient refrigerator,
-                and access to fully-equipped shared kitchen amenities.
+                {{room.description}}
             </div>
         </q-card-section>
         <q-separator/>
@@ -38,7 +35,8 @@ export default {
       return {
         hover: false
       }
-    }
+    },
+    props: ['room']
 }
 </script>
 <style scoped lang="sass">
