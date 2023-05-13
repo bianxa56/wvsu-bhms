@@ -1,7 +1,12 @@
 <template>
   <div class="q-pa-md">
-    <q-table flat bordered title="Tenants" :rows="rows"
+    <q-table flat bordered :rows="rows"
              :filter="filter" :columns="columns" row-key="name" white color="amber">
+      <template v-slot:top-left>
+        <div class="row">
+          <q-btn color="primary" :disable="loading" label="Add row" @click="addTenantDialogOpen = true" />
+        </div>
+      </template>
       <template v-slot:top-right>
         <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
           <template v-slot:append>
@@ -18,12 +23,14 @@
         </q-td>
       </template>
     </q-table>
+    <tenants-form v-model:opened="addTenantDialogOpen"/>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
-import axios from "axios";
+import axios from "axios"
+import TenantsForm from "components/TenantsForm.vue"
 const columns = [
   {
     name: 'name',
@@ -41,59 +48,8 @@ const columns = [
 
 ]
 
-// const rows = [
-//   {
-//     roomNumber: 101,
-//     name: 'John Wick',
-//     address: '221B Baker Street, London',
-//     contactNumber: '995 796 322',
-//     action: ""
-//   },
-//   {
-//     roomNumber: 102,
-//     name: 'Leonardo DiCaprio',
-//     address: '123 Main Street, Anytown USA',
-//     contactNumber: '995 796 322',
-//     action: ""
-//   },
-//   {
-//     roomNumber: 103,
-//     name: 'Anne Hathaway',
-//     address: '742 Evergreen Terrace, Springfield',
-//     contactNumber: '995 796 322',
-//     action: ""
-//   },
-//   {
-//     roomNumber: 104,
-//     name: 'Anne Hathaway',
-//     address: '74 Privet Drive, Little Whinging, Surrey',
-//     contactNumber: '995 796 322',
-//     action: ""
-//   },
-//   {
-//     roomNumber: 105,
-//     name: 'Doja Cat',
-//     address: '221B Cemetery Lane, Misty Mountains',
-//     contactNumber: '995 796 322',
-//     action: ""
-//   },
-//   {
-//     roomNumber: 106,
-//     name: 'Kendrick Lamar',
-//     address: '221B Cemetery Lane, Misty Mountains',
-//     contactNumber: '995 796 322',
-//     action: ""
-//   },
-//   {
-//     roomNumber: 106,
-//     name: 'Chris Brown',
-//     address: '221B Cemetery Lane, Misty Mountains',
-//     contactNumber: '995 796 322',
-//     action: ""
-//   },
-// ]
-
 export default {
+  components: {TenantsForm},
   setup () {
     return {
       filter: ref(''),
@@ -103,7 +59,8 @@ export default {
   },
   data () {
     return {
-      rows: []
+      rows: [],
+      addTenantDialogOpen: false
     }
   },
   async created () {
