@@ -137,7 +137,7 @@
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
-            ₱6,500.00・Ground Floor
+            ₱6,500.00・Second Floor
           </div>
           <div class="text-subtitle1">
             Good for 2 persons only
@@ -172,7 +172,7 @@
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
-            ₱10,000.00・Ground Floor
+            ₱10,000.00・Second Floor
           </div>
           <div class="text-subtitle1">
             Good for 2 persons only
@@ -208,7 +208,7 @@
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
-            ₱7,000.00・Ground Floor
+            ₱7,000.00・Second Floor
           </div>
           <div class="text-subtitle1">
             Good for 2 persons only
@@ -246,7 +246,7 @@
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
-            ₱6,500.00・Ground Floor
+            ₱6,500.00・Second Floor
           </div>
           <div class="text-subtitle1">
             Good for 2 persons only
@@ -281,7 +281,7 @@
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
-            ₱10,000.00・Ground Floor
+            ₱10,000.00・Second Floor
           </div>
           <div class="text-subtitle1">
             Good for 2 persons only
@@ -317,7 +317,7 @@
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
-            ₱7,000.00・Ground Floor
+            ₱7,000.00・Second Floor
           </div>
           <div class="text-subtitle1">
             Good for 2 persons only
@@ -440,19 +440,11 @@ export default {
     const single = ref(null)
     const multiple = ref(null)
     const text = ref('')
-    const options = [
-      'Google',
-      'Facebook',
-      'Twitter',
-      'Apple',
-      'Oracle'
-    ]
 
     return {
       single,
       multiple,
       text,
-      options,
       model: ref(10),
       time: ref(''),
       date: ref('')

@@ -16,7 +16,7 @@ public class TenantServiceImpl implements TenantService {
     public Tenant create(Tenant tenant) {
         Tenant existing = findTenantByFirstNameAndLastName(tenant);
         if (existing != null) {
-            throw new IllegalStateException("Tenant already exist.");
+            throw new IllegalStateException("Tenant already exists.");
         }
         return tenantRepository.save(tenant);
     }

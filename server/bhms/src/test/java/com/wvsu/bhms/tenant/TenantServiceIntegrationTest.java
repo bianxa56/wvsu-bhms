@@ -27,6 +27,8 @@ public class TenantServiceIntegrationTest extends BhmsApplicationTests {
             Tenant tenant = new Tenant();
             tenant.setFirstName("Java");
             tenant.setLastName("Woki");
+            tenant.setAddress("Cabatuan");
+            tenant.setContactNumber("091234");
             tenantService.create(tenant);
         });
         assertEquals("Tenant already exists.", exception.getMessage());
@@ -60,6 +62,8 @@ public class TenantServiceIntegrationTest extends BhmsApplicationTests {
         Tenant tenant = new Tenant();
         tenant.setFirstName(RandomString.make());
         tenant.setLastName(RandomString.make());
+        tenant.setAddress(RandomString.make());
+        tenant.setContactNumber(RandomString.make());
         return tenant;
     }
 }

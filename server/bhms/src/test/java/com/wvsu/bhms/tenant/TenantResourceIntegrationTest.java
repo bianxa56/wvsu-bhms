@@ -27,7 +27,7 @@ public class TenantResourceIntegrationTest extends BhmsApplicationTests {
     @Test
     public void update() {
         Tenant tenant = buildTenant();
-        tenant.setId(1);
+        tenant.setId(2);
         String url = "http://localhost:" + port + "/tenant/update";
         Tenant saved = restTemplate.postForObject(url, tenant, Tenant.class);
         System.out.println(saved);
@@ -57,6 +57,8 @@ public class TenantResourceIntegrationTest extends BhmsApplicationTests {
         Tenant tenant = new Tenant();
         tenant.setFirstName(RandomString.make());
         tenant.setLastName(RandomString.make());
+        tenant.setAddress(RandomString.make());
+        tenant.setContactNumber(RandomString.make());
         return tenant;
     }
 }
