@@ -30,8 +30,8 @@ const columns = [
     required: true,
     label: 'Name',
     align: 'left',
-    field: row => row.firstName,
-    format: val => `${val}`,
+    field: row => row,
+    format: val => `${val.firstName} ${val.lastName}`,
     sortable: true
   },
   { name: 'roomNumber', align: 'center', label: 'Room number', field: 'roomNumber', sortable: true },

@@ -1,6 +1,5 @@
 package com.wvsu.bhms.room;
 
-import com.wvsu.bhms.tenant.Tenant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +30,8 @@ class RoomServiceImpl implements RoomService {
         }
         existingById.setName(room.getName());
         existingById.setMonthlyRent(room.getMonthlyRent());
+        existingById.setRoomLocation(room.getRoomLocation());
+        existingById.setCapacity(room.getCapacity());
         existingById.setDescription(room.getDescription());
         return roomRepository.save(room);
     }

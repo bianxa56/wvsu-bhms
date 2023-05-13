@@ -14,5 +14,7 @@ public class Room {
     private long id;
     private String name;
     private double monthlyRent;
+    private String roomLocation;
+    private String capacity;
     private String description;
 }

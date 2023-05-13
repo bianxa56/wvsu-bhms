@@ -1,8 +1,6 @@
 package com.wvsu.bhms.room;
 
 import com.wvsu.bhms.BhmsApplicationTests;
-import com.wvsu.bhms.tenant.Tenant;
-import com.wvsu.bhms.tenant.TenantService;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,7 @@ public class RoomServiceIntegrationTest extends BhmsApplicationTests {
     @Test
     public void update() {
         Room room = buildRoom();
-        room.setId(1);
+        room.setId(2);
         Room saved = roomService.update(room);
         System.out.println(saved);
         assertNotNull(saved);
@@ -57,6 +55,8 @@ public class RoomServiceIntegrationTest extends BhmsApplicationTests {
         Room room = new Room();
         room.setName(RandomString.make());
         room.setMonthlyRent(10000);
+        room.setRoomLocation(RandomString.make());
+        room.setCapacity(RandomString.make());
         room.setDescription(RandomString.make());
         return room;
     }

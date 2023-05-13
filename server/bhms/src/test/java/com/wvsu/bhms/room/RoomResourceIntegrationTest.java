@@ -1,7 +1,6 @@
 package com.wvsu.bhms.room;
 
 import com.wvsu.bhms.BhmsApplicationTests;
-import com.wvsu.bhms.tenant.Tenant;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +57,8 @@ public class RoomResourceIntegrationTest extends BhmsApplicationTests {
         Room room = new Room();
         room.setName(RandomString.make());
         room.setMonthlyRent(7000);
+        room.setRoomLocation(RandomString.make());
+        room.setCapacity(RandomString.make());
         room.setDescription(RandomString.make());
         return room;
     }
