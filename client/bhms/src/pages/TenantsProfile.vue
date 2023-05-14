@@ -4,7 +4,8 @@
              :filter="filter" :columns="columns" row-key="name" white color="amber">
       <template v-slot:top-left>
         <div class="row">
-          <q-btn color="primary" :disable="loading" label="Add row" @click="addTenantDialogOpen = true" />
+          <q-btn color="primary" :disable="loading" label="Add row"
+                 @click="tenant = null; addTenantDialogOpen = true" />
         </div>
       </template>
       <template v-slot:top-right>
@@ -17,13 +18,13 @@
       <template v-slot:body-cell-action="props">
         <q-td :props="props">
           <div class="text-right">
-            <q-btn icon="edit" round color="secondary" class="q-mr-sm"/>
-            <q-btn icon="delete" round color="red"/>
+            <q-btn icon="edit" round color="secondary" class="q-mr-sm" @click="editTenant(props.row)"/>
+            <q-btn icon="delete" round color="red" @click="deleteTenant(props.row.id)"/>
           </div>
         </q-td>
       </template>
     </q-table>
-    <tenants-form v-model:opened="addTenantDialogOpen"/>
+    <tenants-form v-model:opened="addTenantDialogOpen" :data="tenant"/>
   </div>
 </template>
 
@@ -31,6 +32,7 @@
 import { ref } from 'vue'
 import axios from "axios"
 import TenantsForm from "components/TenantsForm.vue"
+import {Events} from "src/events/events";
 const columns = [
   {
     name: 'name',
@@ -60,8 +62,31 @@ export default {
   data () {
     return {
       rows: [],
-      addTenantDialogOpen: false
+      addTenantDialogOpen: false,
+      tenant: null
     }
+  },
+  methods: {
+    async deleteTenant(id) {
+      try {
+        const response = await axios.post("/api/tenant/delete", null, { params : { id } })
+        console.log(response.data)
+        const index = this.rows.findIndex(row => row.id === id)
+        console.log('index:', index)
+        if (index !== -1) {
+          this.rows.splice(index, 1)
+        }
+        this.notifySuccess('Tenant successfully deleted.')
+      } catch (error) {
+        console.log(error)
+        this.notifyError(error)
+      }
+    },
+    async editTenant(tenant) {
+      console.log(tenant)
+      this.tenant = tenant
+      this.addTenantDialogOpen = true
+    },
   },
   async created () {
     const response = await axios.get('/api/tenant/findAll')

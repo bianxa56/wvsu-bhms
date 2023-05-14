@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="dialogOpened">
+  <q-dialog v-model="dialogOpened" @before-show="initForm" @before-hide="resetForm">
     <q-card>
       <div class="q-pa-md">
         <div class="row">
@@ -15,7 +15,8 @@
           <q-input filled v-model="tenant.contactNumber" label-color="black" label="Contact Number" /> <!--Contact Number-->
 
           <q-card-actions align="center">
-            <q-btn flat color="primary" style="padding-left: 10px; padding-right: 10px;" @click="addTenant">ADD TENANT</q-btn>
+            <q-btn flat color="primary" style="padding-left: 10px; padding-right: 10px;" @click="saveTenant">SAVE TENANT</q-btn>
+            <q-btn flat color="primary" style="padding-left: 10px; padding-right: 10px;" @click="closeDialog">CLOSE</q-btn>
           </q-card-actions>
 
         </div>
@@ -37,7 +38,8 @@ import axios from "axios"
 import { Events } from 'src/events/events'
 export default {
   props: {
-    opened: Boolean
+    opened: Boolean,
+    data: Object
   },
   emits: [Events.TENANT_DIALOG_OPEN],
   watch: {
@@ -48,6 +50,7 @@ export default {
   data() {
     return {
       tenant: {
+        id: 0,
         firstName: "",
         lastName: "",
         address: "",
@@ -57,11 +60,16 @@ export default {
     }
   },
   methods: {
-    async addTenant() {
+    async saveTenant() {
       try {
-        const response = await axios.post("/api/tenant/create", this.tenant)
+        let response = null
+        if (this.tenant.id) {
+          response = await axios.post("/api/tenant/update", this.tenant)
+        } else {
+          response = await axios.post("/api/tenant/create", this.tenant)
+        }
         console.log(response.data)
-        this.notifySuccess('Tenant successfully added.')
+        this.notifySuccess('Tenant successfully saved.')
       } catch (error) {
         console.log(error)
         this.notifyError(error)
@@ -69,9 +77,27 @@ export default {
 
       this.closeDialog()
     },
-      closeDialog() {
-      this.dialogOpened = false
-      this.$emit(Events.TENANT_DIALOG_OPEN, this.dialogOpened)
+    initForm () {
+      if (this.data) {
+        this.tenant.id = this.data.id
+        this.tenant.firstName = this.data.firstName
+        this.tenant.lastName = this.data.lastName
+        this.tenant.address = this.data.address
+        this.tenant.contactNumber = this.data.contactNumber
+      }
+    },
+    resetForm () {
+      if (this.tenant) {
+        this.tenant.id = 0
+        this.tenant.firstName = ""
+        this.tenant.lastName = ""
+        this.tenant.address = ""
+        this.tenant.contactNumber = ""
+      }
+    },
+    closeDialog() {
+    this.dialogOpened = false
+    this.$emit(Events.TENANT_DIALOG_OPEN, this.dialogOpened)
     }
   }
 }
