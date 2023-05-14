@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
   <div class="q-pa-md">
 
@@ -82,7 +78,7 @@
               </div>
               <div class="row">
                 <div class="col-10" style="padding-left: 10px;  font-size: 50px;">
-                  7
+                  {{ tenants.length }}
                 </div>
                 <div class="col-2">
                   <q-icon name="person" color="lime-10" class="text-primary " size="40px" style="padding-top: 20px;"/>
@@ -162,3 +158,20 @@
 <style scoped lang="sass">
 
 </style>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      tenants: []
+    }
+  },
+  async created () {
+    const response = await axios.get('/api/tenant/findAll')
+    this.tenants = response.data
+    console.log(this.tenants)
+  }
+}
+</script>

@@ -34,15 +34,8 @@ import axios from "axios"
 import TenantsForm from "components/TenantsForm.vue"
 import {Events} from "src/events/events";
 const columns = [
-  {
-    name: 'name',
-    required: true,
-    label: 'Name',
-    align: 'left',
-    field: row => row,
-    format: val => `${val.firstName} ${val.lastName}`,
-    sortable: true
-  },
+  { name: 'name', required: true, label: 'Name', align: 'left',
+    field: row => row, format: val => `${val.firstName} ${val.lastName}`, sortable: true},
   { name: 'roomNumber', align: 'center', label: 'Room number', field: 'roomNumber', sortable: true },
   { name: 'address', align: 'center', label: 'Address', field: 'address' },
   { name: 'contactNumber', label: 'Contact number', field: 'contactNumber' },
