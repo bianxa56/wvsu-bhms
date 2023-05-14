@@ -8,14 +8,20 @@ export default ({ app, router, Vue }) => {
         if (typeof error === 'string') {
           this.notify(error, 'red')
         } else {
-          this.notify(JSON.stringify(error), 'red')
+          let message = ''
+          if (error && error.response && error.response.data) {
+            message = error.response.data
+          } else {
+            message = JSON.stringify(error)
+          }
+          this.notify(message, 'red')
         }
       },
       notify (message, color) {
         this.$q.notify({
           color: color,
           position: 'top',
-          message: message,
+          message,
           actions: [
             {
               icon: 'clear',
