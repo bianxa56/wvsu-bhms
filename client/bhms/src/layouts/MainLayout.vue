@@ -85,12 +85,6 @@ const linksList = [
     link: '/collectibleList'
   },
   {
-    title: 'Settings',
-    caption: '',
-    icon: 'settings',
-    link: ''
-  },
-  {
     title: 'About Us',
     caption: '',
     icon: 'info',

@@ -1,20 +1,24 @@
 <template>
   <div class="q-pa-md">
-    <q-table flat bordered :rows="rows"
+    <q-table flat bordered :rows="rows" title="Tenants"
              :filter="filter" :columns="columns" row-key="name" white color="amber">
-      <template v-slot:top-left>
-        <div class="row">
-          <q-btn color="primary" :disable="loading" label="Add row"
-                 @click="tenant = null; addTenantDialogOpen = true" />
+      <template v-slot:top-right>
+        <div>
+          <div class="row" style="display: flex; align-items: center;">
+            <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+              <template v-slot:append>
+                <q-icon name="search" />
+              </template>
+            </q-input>
+          </div>
+          <div class="row" style="margin-top: 5px; margin-left: 90px;">
+            <q-btn color="lime-10" :disable="loading" label="Add row"
+                   @click="tenant = null; addTenantDialogOpen = true" />
+          </div>
         </div>
       </template>
-      <template v-slot:top-right>
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </template>
+
+
       <template v-slot:body-cell-action="props">
         <q-td :props="props">
           <div class="text-right">

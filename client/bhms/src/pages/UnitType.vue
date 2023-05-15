@@ -1,4 +1,3 @@
-
 <template>
   <div class="col">
     <q-img src="~assets/chateau/bh.jpg"  style="height: 300px;">
@@ -7,14 +6,13 @@
     </q-img>
   </div>
 
-  <div class="col" style="padding: 15px; ">
-    <div class="text-h4 flex flex-center">
+  <div class="col" style="padding: 10px; font-family: 'Century Gothic', sans-serif;">
+    <div class="text-h5 flex flex-center">
       Find your ideal living space
     </div>
   </div>
 
   <div class="row q-col-gutter-md">
-    <!-- Room 1-->
     <div v-for="row in rows" :key="row.id" class="col-4">
       <room-type :room="row"/>
     </div>
@@ -29,8 +27,6 @@
 
 .q-item-section--side
   justify-content: flex-end
-
-.absolute-full text-h3 flex flex-center
 
 </style>
 
