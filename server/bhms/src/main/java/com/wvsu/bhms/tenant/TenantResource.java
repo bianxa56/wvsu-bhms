@@ -27,6 +27,11 @@ public class TenantResource {
         tenantService.delete(id);
     }
 
+    @PostMapping("/assignRoom")
+    Tenant update(@RequestParam long tenantId, @RequestParam long roomId) {
+        return tenantService.assignRoom(tenantId, roomId);
+    }
+
     @GetMapping("/findAll")
     List<Tenant> findAll() {
         return tenantService.findAll();

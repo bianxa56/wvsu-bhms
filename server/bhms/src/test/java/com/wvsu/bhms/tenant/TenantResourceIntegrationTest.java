@@ -9,6 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 public class TenantResourceIntegrationTest extends BhmsApplicationTests {
 
     @Autowired
@@ -37,6 +39,14 @@ public class TenantResourceIntegrationTest extends BhmsApplicationTests {
     public void delete() {
         String url = "http://localhost:" + port + "/tenant/delete?id=1";
         restTemplate.postForObject(url, null, Void.class);
+    }
+
+    @Test
+    public void assignRoom() {
+        String url = "http://localhost:" + port + "/tenant/assignRoom?tenantId=10&roomId=1";
+        Tenant tenant = restTemplate.postForObject(url, null, Tenant.class);
+        assertNotNull(tenant);
+        System.out.println(tenant);
     }
 
     @Test
