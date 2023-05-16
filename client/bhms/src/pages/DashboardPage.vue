@@ -10,11 +10,11 @@
               <q-card class="dashboardCard" style="padding: 5px; width: 100%">
                 <q-card-section>
                   <div class="card-title" style="font-size: 20px">
-                    Occupancy Count
+                    Occupied Rooms
                   </div>
                   <div class="row">
                     <div class="col-10" style="padding-left: 10px;  font-size: 50px;">
-                      6
+                      {{ tenants.length }}
                     </div>
                     <div class="col-2">
                       <q-icon name="person" color="lime-10" class="text-primary " size="40px" style="padding-top: 20px;"/>
@@ -34,7 +34,7 @@
                   </div>
                   <div class="row">
                     <div class="col-10" style="padding-left: 10px;  font-size: 50px;">
-                      30
+                      {{ totalBeds }}
                     </div>
                     <div class="col-2">
                       <q-icon name="bed" color="lime-10" class="text-primary " size="40px" style="padding-top: 20px;"/>
@@ -54,7 +54,7 @@
                   </div>
                   <div class="row">
                     <div class="col-10" style="padding-left: 10px;  font-size: 50px;">
-                      30
+                      {{ totalRooms }}
                     </div>
                     <div class="col-2">
                       <q-icon name="apartment" color="lime-10" class="text-primary " size="40px" style="padding-top: 20px;"/>
@@ -98,7 +98,7 @@
               </div>
               <div class="row">
                 <div class="col-10" style="padding-left: 10px;  font-size: 50px;">
-                  23
+                  {{availableBeds}}
                 </div>
                 <div class="col-2">
                   <q-icon name="bed" color="lime-10" class="text-primary " size="40px" style="padding-top: 20px;"/>
@@ -118,7 +118,7 @@
               </div>
               <div class="row">
                 <div class="col-10" style="padding-left: 10px;  font-size: 50px;">
-                  24
+                  {{availableRooms}}
                 </div>
                 <div class="col-2">
                   <q-icon name="apartment" color="lime-10" class="text-primary " size="40px" style="padding-top: 20px;"/>
@@ -165,7 +165,18 @@ import axios from "axios";
 export default {
   data() {
     return {
-      tenants: []
+      tenants: [],
+      totalRooms: 20,
+      totalBeds: 40
+
+    }
+  },
+  computed: {
+    availableRooms() {
+      return this.totalRooms - this.tenants.length;
+    },
+    availableBeds() {
+      return this.totalBeds - this.tenants.length;
     }
   },
   async created () {

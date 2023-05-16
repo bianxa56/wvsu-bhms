@@ -36,7 +36,7 @@
     </div>
     <div class="row">
       <div class="col-6">
-        <div class="header" style="margin-top: 30px;">OUR VALUES</div>
+        <div class="header">OUR VALUES</div>
         <div class="p-1">
           At Chateau D'Alta, we are committed to providing excellent service to our customers.
           We believe in transparency, honesty, and integrity, and we always put the needs of
@@ -54,7 +54,8 @@
         </div>
       </div>
       <div class="col-6">
-        <div class="" style="display: flex; align-items: center;">
+        <div class="" style="display: flex; align-items: center; width: 300px;
+        margin-left: 85px; ">
           <q-img src="~assets/logo.png"/>
         </div>
       </div>

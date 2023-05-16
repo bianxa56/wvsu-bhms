@@ -11,8 +11,8 @@
               </template>
             </q-input>
           </div>
-          <div class="row" style="margin-top: 5px; margin-left: 90px;">
-            <q-btn color="lime-10" :disable="loading" label="Add row"
+          <div class="row" style="margin-top: 10px; margin-left: 90px;">
+            <q-btn fab icon="add" color="lime-10" :disable="loading" label="Add row"
                    @click="tenant = null; addTenantDialogOpen = true" />
           </div>
         </div>
@@ -22,6 +22,7 @@
       <template v-slot:body-cell-action="props">
         <q-td :props="props">
           <div class="text-right">
+            <q-btn icon="room_preferences" round color="primary" class="q-mr-sm" @click="(props.row)"/>
             <q-btn icon="edit" round color="secondary" class="q-mr-sm" @click="editTenant(props.row)"/>
             <q-btn icon="delete" round color="red" @click="deleteTenant(props.row.id)"/>
           </div>
