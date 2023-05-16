@@ -1,5 +1,7 @@
 package com.wvsu.bhms.tenant;
 
+import com.wvsu.bhms.room.Room;
+import com.wvsu.bhms.room.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ public class TenantServiceImpl implements TenantService {
 
     @Autowired
     private TenantRepository tenantRepository;
+
+    @Autowired
+    private RoomService roomService;
 
     @Override
     public Tenant create(Tenant tenant) {
@@ -48,6 +53,38 @@ public class TenantServiceImpl implements TenantService {
     @Override
     public List<Tenant> findAll() {
         return tenantRepository.findAll();
+    }
+
+    @Override
+    public Tenant assignRoom(long tenantId, long roomId) {
+        Tenant tenant = findTenant(tenantId);
+        Room room = findRoom(roomId);
+        checkIfRoomIsAlreadyAssigned(roomId);
+        tenant.setRoom(room);
+        return tenantRepository.save(tenant);
+    }
+
+    private void checkIfRoomIsAlreadyAssigned(long roomId) {
+        Tenant tenantWithRoom = tenantRepository.findByRoomId(roomId);
+        if (tenantWithRoom != null) {
+            throw new IllegalStateException("Room is already occupied.");
+        }
+    }
+
+    private Room findRoom(long roomId) {
+        Room room = roomService.findById(roomId);
+        if (room == null) {
+            throw new IllegalStateException("Room not found.");
+        }
+        return room;
+    }
+
+    private Tenant findTenant(long tenantId) {
+        Tenant tenant = findById(tenantId);
+        if (tenant == null) {
+            throw new IllegalStateException("Tenant not found.");
+        }
+        return tenant;
     }
 
     private static Tenant checkTenantNameIfAlreadyExisting(Tenant existingById, Tenant existingByFirstNameAndLastName) {

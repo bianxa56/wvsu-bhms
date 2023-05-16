@@ -1,6 +1,8 @@
 package com.wvsu.bhms.tenant;
 
 import com.wvsu.bhms.BhmsApplicationTests;
+import com.wvsu.bhms.room.Room;
+import com.wvsu.bhms.room.RoomService;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ public class TenantServiceIntegrationTest extends BhmsApplicationTests {
 
     @Autowired
     private TenantService tenantService;
+
+    @Autowired
+    private RoomService roomService;
 
     @Test
     public void create() {
@@ -58,6 +63,14 @@ public class TenantServiceIntegrationTest extends BhmsApplicationTests {
         assertTrue(tenants.size() > 0);
     }
 
+    @Test
+    public void createWithRoom() {
+        Tenant tenant = tenantService.create(buildTenant());
+        Room room = roomService.create(buildRoom());
+        Tenant tenantWithRoom = tenantService.assignRoom(tenant.getId(), room.getId());
+        assertNotNull(tenantWithRoom);
+    }
+
     private static Tenant buildTenant() {
         Tenant tenant = new Tenant();
         tenant.setFirstName(RandomString.make());
@@ -66,4 +79,15 @@ public class TenantServiceIntegrationTest extends BhmsApplicationTests {
         tenant.setContactNumber(RandomString.make());
         return tenant;
     }
+
+    private Room buildRoom() {
+        Room room = new Room();
+        room.setName(RandomString.make());
+        room.setMonthlyRent(10000);
+        room.setRoomLocation(RandomString.make());
+        room.setCapacity(RandomString.make());
+        room.setDescription(RandomString.make());
+        return room;
+    }
+
 }

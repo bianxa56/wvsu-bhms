@@ -12,4 +12,6 @@ public interface TenantService {
     Tenant findById(long id);
 
     List<Tenant> findAll();
+
+    Tenant assignRoom(long tenantId, long roomId);
 }
